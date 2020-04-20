@@ -166,7 +166,7 @@ useEffect(() => {
                         </div>
                         <div className="d-flex">
                           <a
-                            href="#"
+                            href="http://161.35.32.18/"
                             className="btn btn-primary col ml-0 b-radius-none"
                           >
                             Invest Now

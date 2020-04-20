@@ -189,7 +189,7 @@ const Menu = ({ history }) => {
             {isAuthenticated() && (
               <Fragment>
               <div className="add-listing d-none d-sm-block">
-              <a target="_black"  className="btn btn-primary btn-md" href="http://localhost:3001/">
+              <a target="_black"  className="btn btn-primary btn-md" href="http://161.35.32.18/">
                 Dashboard
               </a>
             </div>
@@ -200,7 +200,7 @@ const Menu = ({ history }) => {
         {!isAuthenticated() && (
               <Fragment>
               <div className="add-listing d-none d-sm-block">
-              <a target="_black" className="btn btn-primary btn-md" href="http://localhost:3001/">
+              <a target="_black" className="btn btn-primary btn-md" href="http://161.35.32.18/">
                 Sumbit Project
               </a>
             </div>
