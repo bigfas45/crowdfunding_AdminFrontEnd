@@ -30,6 +30,13 @@ const Footer = () => {
             <li> <a href="#">Reports </a> </li>
             <li> <a href="#">Complaint </a> </li>
           </ul>
+          <ul class="list-unstyled mb-0">
+            <li> <a href="#">Risk Warnings </a> </li>
+            <li> <a href="#">Privacy Notice</a> </li>
+            <li> <a href="#">Security</a> </li>
+            <li> <a href="#">&nbsp; </a> </li>
+            
+          </ul>
           
         </div>
       </div>

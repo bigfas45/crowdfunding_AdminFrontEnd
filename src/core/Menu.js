@@ -201,7 +201,7 @@ const Menu = ({ history }) => {
               <Fragment>
               <div className="add-listing d-none d-sm-block">
               <a target="_black" className="btn btn-primary btn-md" href="http://161.35.32.18/">
-                Sumbit Project
+                Submit Project
               </a>
             </div>
               </Fragment>
