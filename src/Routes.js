@@ -1,0 +1,44 @@
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Signup from "./user/Signup";
+import Signin from "./user/Signin";
+import Home from "./core/Home";
+import DashboardLayout from "./dashboard/DashboardLayout";
+import {signout} from "./auth";
+import Menu from "./core/Menu";
+import PrivateRoute from './auth/PrivateRoute'
+import AdminRoute from './auth/AdminRoute'
+import AdminDashboard from "./dashboard/AdminDashboard";
+import Project from "./user/Project";
+import ProjectDetails from "./user/ProjectDetails";
+import HowItWorksIssuers from "./user/HowItWorksIssuers";
+import HowItWorksInvestors from "./user/HowItWorksInvestors";
+import WhoWeAre from "./user/WhoWeAre";
+import Contact from "./user/Contact";
+
+
+
+
+
+const Routes = () => {
+  return (
+    <BrowserRouter>
+   <Menu />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <PrivateRoute path="/user/dashboard" exact component={DashboardLayout} />
+        <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
+        <Route path="/signout" exact component={signout} />
+        <Route path="/Project" exact component={Project} />
+        <Route path="/Project/details/:projectId" exact component={ProjectDetails} />
+        <Route path="/howitworksissuers" exact component={HowItWorksIssuers} />
+        <Route path="/HowItWorksInvestors" exact component={HowItWorksInvestors} />
+        <Route path="/WhoWeAre" exact component={WhoWeAre} />
+        <Route path="/contact" exact component={Contact} />
+
+      </Switch>
+    </BrowserRouter>
+  );
+};
+
+export default Routes;
