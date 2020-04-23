@@ -71,3 +71,14 @@ export const getFilteredProduct = (skip, limit, filters = {}) => {
         })
         .catch(err => console.log(err));
     };
+
+
+    export const getProjectRelatedCategory = projectCatId => {
+        return fetch (`${API}/projects/related/${projectCatId}`, {
+            method: "GET"
+        })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+    };

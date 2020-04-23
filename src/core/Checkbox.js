@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 
 
 const Checkbox = ({categories, handleFilters}) => {
@@ -27,10 +27,14 @@ const Checkbox = ({categories, handleFilters}) => {
 
 
     return categories.map((c, i) => (
-        <li key={i} className="list-unstyled">
-            <input onChange={handleToggle(c._id)} value={checked.indexOf(c._id === -1)} type="checkbox" className="form-check-input" />
-            <label  style={{color: "red"}} className="form-check-label"><p>{c.name}</p></label>
-        </li>
+       
+ <div class="collapse show" id="status-property">
+              <ul class="list-unstyled mb-0 pt-3">
+        <li><a href="#"><p>{c.name}</p><span class="ml-auto"><input onChange={handleToggle(c._id)} value={checked.indexOf(c._id === -1)} type="checkbox"/></span></a></li>
+        </ul>
+</div>
+
+        
     ))
 }
 

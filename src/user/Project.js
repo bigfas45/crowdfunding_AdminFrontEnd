@@ -1,212 +1,229 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {getProjectAll, getCategories, getFilteredProduct} from './ApiUser';
-import moment from 'moment';
-import ShowImage from '../core/ShowImage';
-import CheckBox from '../core/Checkbox';
-import CardProject from '../core/CardProject';
-import Card from '../core/Card';
-
+import { getProjectAll, getCategories, getFilteredProduct } from "./ApiUser";
+import moment from "moment";
+import ShowImage from "../core/ShowImage";
+import CheckBox from "../core/Checkbox";
+import CardProject from "../core/CardProject";
+import Card from "../core/Card";
 
 const Project = () => {
-    const [myFilters, setMyFilters] = useState({
-        filters:  {category: []}
+  const [myFilters, setMyFilters] = useState({
+    filters: { category: [] }
+  });
+  const [projectAll, setProjectAll] = useState([]);
+  const [error, setError] = useState(false);
+  const [limit, setLimit] = useState(6);
+  const [skip, setSkip] = useState(0);
+  const [size, setSize] = useState(0);
+  const [filterResults, setFilterResults] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const loadCategories = () => {
+    getCategories().then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setCategories(data);
+      }
     });
-    const [projectAll, setProjectAll] = useState([]);
-    const [error, setError]  = useState(false);
-    const [limit, setLimit]  = useState(6);
-    const [skip, setSkip]  = useState(0);
-    const [size, setSize]  = useState(0);
-    const [filterResults, setFilterResults] = useState([]);
-    const [categories, setCategories] = useState([]);
+  };
 
-    const loadCategories = () => {
-
-        getCategories().then(data => {
-            if (data.error) {
-                console.log(data.error)
-            }else{
-                setCategories(data)
-            }
-        });
-
-    };
-  
-    const init = () => {
-        getProjectAll().then(data => {
-          if (data.error) {
-             setError(data.error);
-          }else{
-            setProjectAll(data);
-          }
-      });
+  const init = () => {
+    getProjectAll().then(data => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setProjectAll(data);
+      }
+    });
   };
 
   const loadFilterResult = newFilters => {
-   // console.log(newFilters);
+    // console.log(newFilters);
     getFilteredProduct(skip, limit, newFilters).then(data => {
-        if (data.error) {
-            setError(data.error);
-        }else{
-            setFilterResults(data.data);
-            setSize(data.size)
-           setSkip(0)
-        }
-    })
-};
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setFilterResults(data.data);
+        setSize(data.size);
+        setSkip(0);
+      }
+    });
+  };
 
-const loadLoadMore = () => {
-  let toSkip = skip + limit
-  // console.log(newFilters);
-   getFilteredProduct(toSkip, limit, myFilters.filters).then(data => {
-       if (data.error) {
-           setError(data.error);
-       }else{
-           setFilterResults([...filterResults, ...data.data]);
-           setSize(data.size)
-          setSkip(toSkip)
-       }
-   })
-};
+  const loadLoadMore = () => {
+    let toSkip = skip + limit;
+    // console.log(newFilters);
+    getFilteredProduct(toSkip, limit, myFilters.filters).then(data => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setFilterResults([...filterResults, ...data.data]);
+        setSize(data.size);
+        setSkip(toSkip);
+      }
+    });
+  };
 
-const loadMoreButton = () =>{
-  return(
-    size > 0 && size >= limit && (
-      <button onClick={loadLoadMore} className="btn btn-warning mb-5">Load more</button>
-    )
-  )
-}
-  
-  
+  const loadMoreButton = () => {
+    return (
+      size > 0 &&
+      size >= limit && (
+        <button onClick={loadLoadMore} className="btn btn-warning mb-5">
+          Load more
+        </button>
+      )
+    );
+  };
+
   useEffect(() => {
     init();
     loadCategories();
-    loadFilterResult(skip, limit, myFilters.filters)
-  
+    loadFilterResult(skip, limit, myFilters.filters);
   }, []);
-
-
-
 
   const handleFilters = (filters, filterBy) => {
     //console.log("SHOP", filters, filterBy)
-    const newFilters = {...myFilters};
+    const newFilters = { ...myFilters };
     newFilters.filters[filterBy] = filters;
 
-   
     loadFilterResult(myFilters.filters);
     setMyFilters(newFilters);
- };
+  };
 
-
- const breadcrum = () => {
-   return(
-     <Fragment>
-       <div className="bg-light">
-  <div className="container">
-    <div className="row">
-      <div className="col-12">
-        <ol className="breadcrumb mb-0">
-          <li className="breadcrumb-item"><Link to="#"> <i className="fas fa-home"></i> </Link></li>
-          <li className="breadcrumb-item"> <i className="fas fa-chevron-right"></i> <Link href="#">Pages</Link></li>
-          <li className="breadcrumb-item active"> <i className="fas fa-chevron-right"></i> <span>No result found </span></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</div>
-     </Fragment>
-   )
- }
-
-
-  const searchBar = () => {
-      return(
-          <Fragment>
-                <div className="col-lg-12">
-        <div className="property-filter d-sm-flex">
-          <ul className="property-short list-unstyled d-sm-flex mb-0">
-            <li>
-              <form className="form-inline">
-                <div className="form-group d-lg-flex d-block">
-                  <label className="justify-content-start">Short by:</label>
-                  <div className="short-by">
-                    <select className="form-control basic-select">
-                      <option>Date new to old</option>
-                      <option>Price Low to High</option>
-                      <option>Price High to Low</option>
-                      <option>Date Old to New</option>
-                      <option>Date New to Old</option>
-                    </select>
-                  </div>
-                </div>
-              </form>
-            </li>
-          </ul>
-          <ul className="property-view-list list-unstyled d-flex mb-0">
-            <li>
-              <form className="form-inline">
-                <div class="form-group d-lg-flex d-block">
-                  <label className="justify-content-start pr-2">Sort by: </label>
-                  <div className="short-by">
-                    <select className="form-control basic-select">
-                      <option>12</option>
-                      <option>18 </option>
-                      <option>24 </option>
-                      <option>64 </option>
-                      <option>128</option>
-                    </select>
-                  </div>
-                </div>
-              </form>
-            </li>
-            </ul>
-
+  const breadcrum = () => {
+    return (
+      <Fragment>
+        <div className="bg-light">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <ol className="breadcrumb mb-0">
+                  <li className="breadcrumb-item">
+                    <Link to="#">
+                      {" "}
+                      <i className="fas fa-home"></i>{" "}
+                    </Link>
+                  </li>
+                  <li className="breadcrumb-item">
+                    {" "}
+                    <i className="fas fa-chevron-right"></i>{" "}
+                    <Link href="#">Pages</Link>
+                  </li>
+                  <li className="breadcrumb-item active">
+                    {" "}
+                    <i className="fas fa-chevron-right"></i>{" "}
+                    <span>No result found </span>
+                  </li>
+                </ol>
+              </div>
             </div>
-            </div>
-
-          </Fragment>
-      )
-  }
-  
-
-
-
-
-
-    const content = () =>  {
-        return(
-            <Fragment>
-               
-    
-
-            <div class="row mt-4">
-                {filterResults.map((p,i) => {
-                    return(
-                        <div className="col-sm-6" key={i}>
-                        <div className="property-item">
-                   <Card project={p} />
-                   </div>
-                  
-                   </div>
-                    )
-                })}
-                 <hr />
-                   {loadMoreButton()}
-      
+          </div>
         </div>
+      </Fragment>
+    );
+  };
 
-
-       
-            </Fragment>
-        )
-    }
-
-
-
-
-
-
+  const test = () => {
+    return (
+      <Fragment>
+        <section class="space-ptb">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="section-title mb-3 mb-lg-4">
+                  <h2>
+                    <span class="text-primary">{projectAll.lenght}</span>{" "}
+                    Results
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 mb-5 mb-lg-0">
+                <div class="sidebar">
+                  <div class="widget">
+                    <div class="widget-title widget-collapse">
+                      <h6>Filter By Status</h6>
+                      <a
+                        class="ml-auto"
+                        data-toggle="collapse"
+                        href="#status-property"
+                        role="button"
+                        aria-expanded="false"
+                        aria-controls="status-property"
+                      >
+                        {" "}
+                        <i class="fas fa-chevron-down"></i>{" "}
+                      </a>
+                    </div>
+                    <div class="collapse show" id="status-property">
+                      <ul class="list-unstyled mb-0 pt-3">
+                        <li>
+                          <a href="#">
+                            Loan
+                            <span class="ml-auto">
+                              <input type="checkbox" name="" />
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            Equity
+                            <span class="ml-auto">
+                              <input type="checkbox" name="" />
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="widget">
+                    <div class="widget-title widget-collapse">
+                      <h6>Filter By Categories</h6>
+                      <a
+                        class="ml-auto"
+                        data-toggle="collapse"
+                        href="#type-property"
+                        role="button"
+                        aria-expanded="false"
+                        aria-controls="type-property"
+                      >
+                        {" "}
+                        <i class="fas fa-chevron-down"></i>{" "}
+                      </a>
+                    </div>
+                    <div class="collapse show" id="type-property">
+                      <CheckBox
+                        categories={categories}
+                        handleFilters={filters =>
+                          handleFilters(filters, "category")
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <div class="row mt-4">
+                  {filterResults.map((p, i) => {
+                    return (
+                      <div class="col-sm-6" key={i}>
+                        <CardProject project={p} />
+                      </div>
+                    );
+                  })}
+                  <hr />
+                  {loadMoreButton()}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Fragment>
+    );
+  };
 
   const footer = () => {
     return (
@@ -325,37 +342,13 @@ const loadMoreButton = () =>{
     );
   };
 
-
-
   return (
     <Fragment>
       {breadcrum()}
-      
-        <section className="space-ptb">
-            <div className="container-fluid">
-            <div class="section-title text-center">
-          <h2>Crowdfunding Projects</h2>
-        </div> 
-                <div className="row">
-          
-                <div className="col-md-12 col-lg-2 col-xl-2 card m-l-30 cat">
-           <div class="panel panel-primary">
-              <h6 className="card-body"><b>Filter by categories</b></h6> <hr/>
-              </div>
-                        <ul>
-                        <CheckBox categories={categories}  handleFilters={filters => handleFilters(filters, 'category')} />
-                        </ul>
-                        
-                    </div>
-                    <div className="col-10">
-                     {content()}
-                
-                     </div>
-                </div>
-            </div>
-        </section>
 
-     {footer()}
+      {test()}
+
+      {footer()}
     </Fragment>
   );
 };

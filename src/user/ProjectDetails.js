@@ -1,21 +1,38 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getProject, getProjectGallery } from "./ApiUser";
+import { getProject, getProjectGallery, getProjectRelatedCategory } from "./ApiUser";
 import moment from "moment";
 import Footer from "../core/Footer";
 import ReactHtmlParser from 'react-html-parser';
 import '../styles.css';
 import {API} from '../config';
+import WordLimit from 'react-word-limit';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+import ShowImage from "../core/ShowImage";
 
 
 
 
-const ProjectDetails = ({ match }) => {
+const ProjectDetails = props => {
   const [projectAll, setProjectAll] = useState([]);
+  const [projectCat, setProjectCat] = useState([]);
+
   const [gallery, setGallery] = useState([]);
 
   const [error, setError] = useState(false);
   let count =0;
+
+
+//   const initProjectRelatedCat = (projectRelatedCat) => {
+//     getProjectRelatedCategory(projectRelatedCat).then(data => {
+//       if (data.error) {
+//          setError(data.error);
+//       }else{
+//         setProjectCat(data);
+//       }
+//   });
+// };
 
   const init = (projectId) => {
     getProject(projectId).then(data => {
@@ -23,6 +40,15 @@ const ProjectDetails = ({ match }) => {
          setError(data.error);
       }else{
         setProjectAll(data);
+         //fetch related projects 
+         getProjectRelatedCategory(projectId).then(data => {
+           if (data.error) {
+             setError(data.error)
+           }else{
+            setProjectCat(data)
+           }
+         })
+       
       }
   });
 };
@@ -33,14 +59,16 @@ const initProjectGallery = (projectId) => {
          setError(data.error)
       }else{
           setGallery(data)
+         
+
       }
   });
 };
   
 useEffect(() => {
-  init(match.params.projectId);
-  initProjectGallery(match.params.projectId)
-}, []);
+  init(props.match.params.projectId);
+  initProjectGallery(props.match.params.projectId);
+}, [props]);
 
   const breadcrumb = () => {
     return (
@@ -75,201 +103,258 @@ useEffect(() => {
     );
   };
 
-  const content = () => {
-    return (
+  const similarProject = () => {
+    return(
       <Fragment>
-        {projectAll.map((d,i) => {
-          return(
-            <div className="wrapper" key={i}>
-            <section className="space-pt">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-4 mb-5 mb-lg-0 order-lg-2">
-                    <div className="sticky-top">
-                      <div className="mb-4">
-                       <a target="_black" href={`${d.website}`} > <h3>{d.title}</h3></a>
-                        <span class="badge badge-pill badge-danger">{d.category.name} </span>
-                        <span class="d-block mb-3">
-                          <i className="fas fa-map-marker-alt fa-xs pr-2"></i>
-                            {d.location}
-                        </span>
-                        <span className="price font-xll text-primary d-block">
-                        ₦{d.pledge.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-                        </span>
-                        <p>Goal</p>
-                        <span className="price font-xll text-success d-block">
-                          ₦50,000
-                        </span>
-                        <p>Pledged</p>
-                        <span className="sub-price font-lg text-dark d-block">
-                          <b>
-                            <i
-                              className="fas fa-chart-bar"
-                              style={{ margin: " 4px 0px 0px 0px" }}
-                            ></i>
-                            &nbsp;{d.returns}% returns in {d.duration} months
-                          </b>{" "}
-                        </span>
-                        <ul className="property-detail-meta list-unstyled ">
-                          <li className="share-box">
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-share-alt"></i>{" "}
-                            </a>
-                            <ul className="list-unstyled share-box-social">
-                              <li>
-                                {" "}
-                                <a href="#">
-                                  <i className="fab fa-facebook-f"></i>
-                                </a>{" "}
-                              </li>
-                              <li>
-                                {" "}
-                                <a href="#">
-                                  <i className="fab fa-twitter"></i>
-                                </a>{" "}
-                              </li>
-                              <li>
-                                {" "}
-                                <a href="#">
-                                  <i className="fab fa-linkedin"></i>
-                                </a>{" "}
-                              </li>
-                              <li>
-                                {" "}
-                                <a href="#">
-                                  <i className="fab fa-instagram"></i>
-                                </a>{" "}
-                              </li>
-                              <li>
-                                {" "}
-                                <a href="#">
-                                  <i className="fab fa-pinterest"></i>
-                                </a>{" "}
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="#">
-                              {" "}
-                              <i className="fas fa-heart"></i>{" "}
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="agent-contact">
-                        <div className="d-flex align-items-center p-4 border border-bottom-0">
-                          <div className="agent-contact-name">
-                            <label>Amout(₦)</label>
-                            <input className="form-control" type="number" name="" />
-                          </div>
-                        </div>
-                        <div className="d-flex">
-                          <a
-                            href="http://161.35.32.18/"
-                            className="btn btn-primary col ml-0 b-radius-none"
-                          >
-                            Invest Now
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-8 order-lg-1">
-                
-                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-
-  { gallery.map((g, i) => {
-    count++;
-    let active
-if(count === 1){
-   active ="active"
-
-}else{
-  active =""
-}
-
-                     return(
-                       <Fragment>
-    <div class={`carousel-item ${active}`}>
-      <img  className="d-block w-100" src={`${API}/gallery/file/${g._id}`} alt={g.name}  />
-
-    </div>
-    </Fragment>
-   )
-  })}
+        <section class="space-pt">
+  <div class="container">
+    <hr class="mb-5 mt-0"/>
+    <h5 class="mb-4">Similar projects</h5>
+    <div class="row">
    
-    
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+   {projectCat.map((pcat, i) => {
+     return(
 
-</div>
+   
   
-  
-                    <hr className="mt-4 mb-4 mb-sm-5 mt-sm-5" />
-                    <div className="property-description">
-                      <div className="row">
-                        <div className="col-sm-3 mb-3 mb-sm-0">
-                          <h3>Description</h3>
-                        </div>
-                        <div className="col-sm-9">
-                         {ReactHtmlParser(d.description)}
-                          
-                        </div>
-                      </div>
-                    </div>
-  
-                    <hr className="mt-4 mb-4 mb-sm-5 mt-sm-5" />
-                    <div className="property-video">
-                      <div className="row">
-                        <div className="col-sm-3 mb-3 mb-sm-0">
-                          <h5>Project video</h5>
-                        </div>
-                        <div className="col-sm-9">
-                          <div className="embed-responsive embed-responsive-16by9">
-                            <iframe
-                              width="560"
-                              height="315"
-                              src="https://www.youtube.com/embed/kacyaEXqVhs"
-                              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                              allowfullscreen
-                            ></iframe>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <hr className="mt-4 mb-4 mb-sm-5 mt-sm-5" />
-                  </div>
+      <div class="col-sm-4">
+            <div class="property-item">
+              <div class="property-image bg-overlay-gradient-04">
+              <ShowImage item={pcat} url="project" />
+                <div class="property-lable">
+                 
+                 <span class="badge badge-md badge-primary">{pcat.category.name}</span>
+                  <span class="badge badge-md badge-info">Loan </span>
+                </div>
+               
+              
+                <div class="property-agent-popup">
+                  <a href="#"><i class="fas fa-camera"></i> 06</a>
                 </div>
               </div>
-            </section>
-  
-            <section className="space-pt"></section>
+              <div class="property-details">
+                <div class="property-details-inner">
+                  <h5 class="property-title"><a href="project2.php">{pcat.title} </a></h5>
+                 
+                  <span class="property-agent-date"> <br/><i style="color: green;"  class="fas fa-chart-bar" style={{margin: "4px 0px 0px 0px"}}></i> &nbsp;{pcat.returns}% returns in {pcat.duration} months
+                </span>
+                  <br/>
+                  <br/>
+                  <div class="w3-light-grey w3-round-xlarge">
+                  <div class="w3-container w3-blue w3-round-xlarge" style={{width:"75%"}}>75%</div>
+                </div>
+                 
+                  <ul class="property-info list-unstyled d-flex">
+                    <li class="flex-fill property-bed"> <div class="goal-price">₦{pcat.pledge.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</div>
+                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>Goal</p></li>
+                     <li class="flex-fill property-bed"> <div class="pledged-price">₦0 </div>
+                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>pledged</p></li>
+                    <li class="flex-fill property-bath"><div class="duration">Duration</div>
+                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>{moment(pcat.createdAt). fromNow()} </p></li>
+                    
+                  </ul>
+                  
+                </div>
+                <div class="property-btn">
+                <Link class="property-link" to={`/project/details/${pcat._id}`}>See Details</Link>
+
+                  
+                </div>
+              </div>
+            </div>
           </div>
-        )
-      })}
-      
+            )
+          })}
+    </div>
+    
+  </div>
+</section>
+
       </Fragment>
-    );
-  };
+    )
+  }
+
+
+
+
+  const projectDetailsContent = () => {
+    return(
+      <Fragment>
+         {projectAll.map((d,i) => {
+          return(
+        <div class="wrapper">
+ 
+       
+  <section class="space-pt">
+    <div class="container">
+      <div class="row">
+       <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2">
+          <div class="sticky-top">
+            <div class="mb-4">
+              <h3>{d.title}</h3>
+          <span class="d-block mb-3"><i class="fas fa-map-marker-alt fa-xs pr-2"></i>{d.location}</span>
+          {/* <WordLimit limit={10}>{d.description} </WordLimit>            */}
+                <span class="property-agent-date"> <br/><i style="color: green;" class="fas fa-chart-bar" style={{margin: "4px 0px 0px 0px"}}></i> &nbsp;{d.returns}% returns in {d.duration} months
+               </span>
+                  <br/>
+                  <br/>
+                  <div class="w3-light-grey w3-round-xlarge">
+                  <div class="w3-container w3-blue w3-round-xlarge" style={{width:"75%"}}>75%</div>
+                </div>
+                 
+                  <ul class="property-info list-unstyled d-flex">
+                    <li class="flex-fill property-bed"> <div class="goal-price">₦{d.pledge.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</div>
+                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>Goal</p></li>
+                     <li class="flex-fill property-bed"> <div class="pledged-price">₦0 </div>
+                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>pledged</p></li>
+                    <li class="flex-fill property-bath"><div class="duration">Duration</div>
+                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>{moment(d.createdAt). fromNow()} </p></li>
+                  </ul>
+
+                   <a class="btn btn-primary" href="#"><span>LOGIN TO INVEST</span></a>
+                   <br/>
+                   <br/>
+
+                  <div class="social-icon d-flex">
+                          <span>Share this project:</span>
+
+                          <ul class="list-unstyled mb-0 ml-3 list-inline">
+                            <li class="list-inline-item"> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
+                            <li class="list-inline-item"> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
+                            <li class="list-inline-item"> <a href="#"> <i class="fab fa-instagram"></i> </a> </li>
+                            <li class="list-inline-item"> <a href="#"> <i class="fab fa-linkedin"></i> </a> </li>
+                          </ul>
+                        </div>
+             
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="property-detail-gallery overflow-hidden">
+            <ul class="nav nav-tabs nav-tabs-02 mb-4" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link shadow active" aria-selected="true">{d.category.name}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link shadow"  aria-selected="false">Loan</a>
+              </li>
+              
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+            <Carousel>
+            { gallery.map((g, i) => {
+              return(
+                <div>
+                    <img src={`${API}/gallery/file/${g._id}`} alt={g.location} />
+                    <p className="legend">{g.name}</p>
+                </div>
+              )
+            })}
+               
+            </Carousel>
+             
+             
+            </div>
+          </div>
+          <div class="property-info mt-5">
+            <div class="row">
+        
+          
+       
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </section>
+        
+  <section class="space-pb sticky-top" >
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav nav-tabs mb-4" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="overview-tab" data-toggle="pill" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="listing-tab" data-toggle="pill" href="#listing" role="tab" aria-controls="listing" aria-selected="false">Updates</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="agents-tab" data-toggle="pill" href="#agents" role="tab" aria-controls="agents" aria-selected="false">Documents</a>
+          </li>
+         
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+            <div class="row">
+              <div class="col-md-12">
+              {ReactHtmlParser(d.description)}
+                </div>
+              
+              
+            </div>
+          </div>
+          <div class="tab-pane fade" id="listing" role="tabpanel" aria-labelledby="listing-tab">
+            <div class="row">
+         <div class="row">
+      <div class="col-sm-12">
+        <div class="mb-4">
+          <p>30-06-2020</p>
+          <h5 class="mb-3">How does it work?</h5>
+          <p>We also know those epic stories, those modern-day legends surrounding the early failures of such supremely successful folks as Michael Jordan and Bill Gates.</p>
+        </div>
+        <hr/>
+        <div class="mb-4">
+          <p>30-06-2020</p>
+          <h5 class="mb-3">What if I’m not available at the requested time?</h5>
+          <p>We know this in our gut, but what can we do about it? How can we motivate ourselves? One of the most difficult aspects of achieving success is staying motivated over the long haul.</p>
+        </div>
+
+       
+      </div>
+    </div>
+          
+          
+       </div>
+     </div>
+          <div class="tab-pane fade" id="agents" role="tabpanel" aria-labelledby="agents-tab">
+            <div class="row">
+             <div class="col-12">
+        <div class="section-title">
+          <h2>LOGIN TO VIEW DOCUMENTS</h2>
+        </div>
+        
+        <a class="btn btn-primary" href="#"><span>LOGIN</span></a>
+        
+      </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  </section>
+
+ 
+</div>
+)
+})}
+      </Fragment>
+    )
+  }
+
+
+
 
   return (
     <Fragment>
       {breadcrumb()}
-      {content()}
+      {projectDetailsContent()}
+      {similarProject()}
+     
       <Footer />
     </Fragment>
   );
