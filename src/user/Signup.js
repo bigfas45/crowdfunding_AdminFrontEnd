@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import {signup} from '../auth';
+import {signup, sendVerificationMail} from '../auth';
 
 
 const Signup = () => {
@@ -10,12 +10,36 @@ const Signup = () => {
     email: "",
     password: "",
     error: "",
+    pop: false,
     success: false
   });
-  const { firstname, lastname, email, password, error, success } = values;
+  const { firstname, lastname, email, password, error, success, pop } = values;
 
   const handleChnage = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
+  };
+
+
+  
+
+
+  
+  const init = (email) => {
+    sendVerificationMail(email).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, pop: false });
+      } else {
+        setValues({
+          ...values,
+          firstname: "",
+          lastname: "",
+          email: "",
+          password: "",
+          success: true,
+          pop: true
+        });
+      }
+    });
   };
 
 
@@ -25,7 +49,7 @@ const Signup = () => {
     setValues({...values, error:false});
     signup({ firstname, lastname, email, password }).then(data => {
       if (data.error) {
-        setValues({ ...values, error: data.error, success: false });
+        setValues({ ...values, error: data.error, success: false , pop: false});
       } else {
         setValues({
           ...values,
@@ -35,6 +59,8 @@ const Signup = () => {
           password: "",
           success: true
         });
+        init(email)
+
       }
     });
   };

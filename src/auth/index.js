@@ -67,3 +67,15 @@ export const isAuthenticated = () => {
     return false;
   }
 }
+
+
+export const sendVerificationMail = (email) => {
+  return fetch (`${API}/mail/signup/verification/${email}`, {
+      method: "GET"
+  })
+  .then(response => {
+      return response.json();
+  })
+  .catch(err => console.log(err));
+};
+
