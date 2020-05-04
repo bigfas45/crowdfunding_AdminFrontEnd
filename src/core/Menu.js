@@ -118,7 +118,7 @@ const Menu = ({ history }) => {
               <i className="fas fa-align-left"></i>
             </button>
             <Link className="navbar-brand" to="#">
-              <img className="img-fluid" src="images/nasdlogop.jpg" alt="logo" />
+              <img className="img-fluid" src="https://nasdng.com/wp-content/uploads/2020/05/nasdlogop.jpg" alt="logo" />
             </Link>
             <div className="navbar-collapse collapse justify-content-center">
               <ul className="nav navbar-nav">

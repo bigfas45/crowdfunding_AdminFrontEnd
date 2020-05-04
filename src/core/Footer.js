@@ -31,10 +31,10 @@ const Footer = () => {
             <li> <a href="#">Complaint </a> </li>
           </ul>
           <ul class="list-unstyled mb-0">
-            <li> <a href="#">Risk Warnings </a> </li>
-            <li> <a href="#">Privacy Notice</a> </li>
-            <li> <a href="#">Security</a> </li>
-            <li> <a href="#">&nbsp; </a> </li>
+            <li> <Link to="/risk/warning">Risk Warnings </Link> </li>
+            <li> <Link to="/private/notice">Privacy Notice</Link> </li>
+            <li> <Link to="/security">Security</Link> </li>
+            <li> <Link to="#">&nbsp; </Link> </li>
             
           </ul>
           
@@ -67,7 +67,7 @@ const Footer = () => {
           <a id="back-to-top" class="back-to-top" href="#"><i class="fas fa-angle-double-up"></i> </a>
         </div>
         <div class="col-md-4 text-center text-md-right">
-          <p class="mb-0 " style={{color: "white"}}><a href=""> Data protection Policy</a> | <a href=""> Privacy Policy</a> | <a href="">Terms of Use</a>
+          <p class="mb-0 " style={{color: "white"}}><Link to="/data/protection"> Data protection Policy</Link> | <a href=""> Privacy Policy</a> | <Link to="/term_of_use">Terms of Use</Link>
             </p>
         </div>
       </div>
