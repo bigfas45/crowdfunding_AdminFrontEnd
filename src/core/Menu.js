@@ -73,7 +73,7 @@ const Menu = ({ history }) => {
                   {!isAuthenticated() && (
                   <Fragment>
                       <div className="login d-inline-block">
-                    <a  target="_black" href="http://localhost:3001/">
+                    <a   href="http://account.nasdfundy.com/">
                       sign in<i className="fa fa-user pl-2"></i>
                     </a>
                   </div>
@@ -189,7 +189,7 @@ const Menu = ({ history }) => {
             {isAuthenticated() && (
               <Fragment>
               <div className="add-listing d-none d-sm-block">
-              <a target="_black"  className="btn btn-primary btn-md" href="http://161.35.32.18/">
+              <a  className="btn btn-primary btn-md" href="http://account.nasdfundy.com/">
                 Dashboard
               </a>
             </div>
@@ -200,7 +200,7 @@ const Menu = ({ history }) => {
         {!isAuthenticated() && (
               <Fragment>
               <div className="add-listing d-none d-sm-block">
-              <a target="_black" className="btn btn-primary btn-md" href="http://161.35.32.18/">
+              <a  className="btn btn-primary btn-md" href="http://account.nasdfundy.com/">
                 Submit Project
               </a>
             </div>

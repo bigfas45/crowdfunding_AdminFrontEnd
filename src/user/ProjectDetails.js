@@ -9,7 +9,10 @@ import {API} from '../config';
 import WordLimit from 'react-word-limit';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import ShowImage from "../core/ShowImage";
+import { getProductPayment } from "../core/apiCore";
+import Card from '../core/Card';
+
+
 
 
 
@@ -17,22 +20,43 @@ import ShowImage from "../core/ShowImage";
 const ProjectDetails = props => {
   const [projectAll, setProjectAll] = useState([]);
   const [projectCat, setProjectCat] = useState([]);
-
   const [gallery, setGallery] = useState([]);
+  const [data, setData] = useState([]);
+
+
+  let amount=0
+let total =0
+let percentage=0
+
 
   const [error, setError] = useState(false);
   let count =0;
 
+  
+  const initPayment = (projectId) => {
+    getProductPayment(projectId).then(data => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setData(data);
+      }
+    });
+  };
 
-//   const initProjectRelatedCat = (projectRelatedCat) => {
-//     getProjectRelatedCategory(projectRelatedCat).then(data => {
-//       if (data.error) {
-//          setError(data.error);
-//       }else{
-//         setProjectCat(data);
-//       }
-//   });
-// };
+
+
+  const payment = () => {
+    data.map((p,i) => {
+      amount = p.amount
+      total += amount
+   
+    })
+  }
+
+  const perce = (pledge)  => {
+    percentage = ( ((total)/pledge) *100 )
+    return percentage
+  }
 
   const init = (projectId) => {
     getProject(projectId).then(data => {
@@ -68,6 +92,7 @@ const initProjectGallery = (projectId) => {
 useEffect(() => {
   init(props.match.params.projectId);
   initProjectGallery(props.match.params.projectId);
+  initPayment(props.match.params.projectId)
 }, [props]);
 
   const breadcrumb = () => {
@@ -118,50 +143,7 @@ useEffect(() => {
    
   
       <div class="col-sm-4">
-            <div class="property-item">
-              <div class="property-image bg-overlay-gradient-04">
-              <ShowImage item={pcat} url="project" />
-                <div class="property-lable">
-                 
-                 <span class="badge badge-md badge-primary">{pcat.category.name}</span>
-                  <span class="badge badge-md badge-info">Loan </span>
-                </div>
-               
-              
-                <div class="property-agent-popup">
-                  <a href="#"><i class="fas fa-camera"></i> 06</a>
-                </div>
-              </div>
-              <div class="property-details">
-                <div class="property-details-inner">
-                  <h5 class="property-title"><a href="project2.php">{pcat.title} </a></h5>
-                 
-                  <span class="property-agent-date"> <br/><i style="color: green;"  class="fas fa-chart-bar" style={{margin: "4px 0px 0px 0px"}}></i> &nbsp;{pcat.returns}% returns in {pcat.duration} months
-                </span>
-                  <br/>
-                  <br/>
-                  <div class="w3-light-grey w3-round-xlarge">
-                  <div class="w3-container w3-blue w3-round-xlarge" style={{width:"75%"}}>75%</div>
-                </div>
-                 
-                  <ul class="property-info list-unstyled d-flex">
-                    <li class="flex-fill property-bed"> <div class="goal-price">₦{pcat.pledge.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</div>
-                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>Goal</p></li>
-                     <li class="flex-fill property-bed"> <div class="pledged-price">₦0 </div>
-                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>pledged</p></li>
-                    <li class="flex-fill property-bath"><div class="duration">Duration</div>
-                      <p style={{fontSize: "15px", fontWeight: "bolder"}}>{moment(pcat.createdAt). fromNow()} </p></li>
-                    
-                  </ul>
-                  
-                </div>
-                <div class="property-btn">
-                <Link class="property-link" to={`/project/details/${pcat._id}`}>See Details</Link>
-
-                  
-                </div>
-              </div>
-            </div>
+          <Card  project={pcat} />
           </div>
             )
           })}
@@ -183,8 +165,8 @@ useEffect(() => {
          {projectAll.map((d,i) => {
           return(
         <div class="wrapper">
- 
-       
+   
+   {  payment()}
   <section class="space-pt">
     <div class="container">
       <div class="row">
@@ -199,13 +181,13 @@ useEffect(() => {
                   <br/>
                   <br/>
                   <div class="w3-light-grey w3-round-xlarge">
-                  <div class="w3-container w3-blue w3-round-xlarge" style={{width:"75%"}}>75%</div>
+                  <div class="w3-container w3-blue w3-round-xlarge" style={{width: `${perce(d.pledge).toFixed(0)}%`}}>{perce(d.pledge).toFixed(0)}%</div>
                 </div>
                  
                   <ul class="property-info list-unstyled d-flex">
                     <li class="flex-fill property-bed"> <div class="goal-price">₦{d.pledge.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</div>
                       <p style={{fontSize: "15px", fontWeight: "bolder"}}>Goal</p></li>
-                     <li class="flex-fill property-bed"> <div class="pledged-price">₦0 </div>
+                     <li class="flex-fill property-bed"> <div class="pledged-price">₦{total.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} </div>
                       <p style={{fontSize: "15px", fontWeight: "bolder"}}>pledged</p></li>
                     <li class="flex-fill property-bath"><div class="duration">Duration</div>
                       <p style={{fontSize: "15px", fontWeight: "bolder"}}>{moment(d.createdAt). fromNow()} </p></li>

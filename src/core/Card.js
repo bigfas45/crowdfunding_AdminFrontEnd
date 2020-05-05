@@ -31,6 +31,11 @@ let percentage=0
     })
   }
 
+  const perce = (pledge)  => {
+    percentage = ( ((total)/pledge) *100 )
+    return percentage
+  }
+
 
 
   useEffect(() => {
@@ -53,7 +58,6 @@ let percentage=0
                 </div>
                 {  payment()}
 
-{percentage =  ((total)/project.pledge) *100 }  
               
                 <div class="property-agent-popup">
                   <a href="#"><i class="fas fa-camera"></i> 06</a>
@@ -68,7 +72,7 @@ let percentage=0
                   <br/>
                   <br/>
                   <div class="w3-light-grey w3-round-xlarge">
-                  <div class="w3-container w3-blue w3-round-xlarge" style={{width:`${percentage}%`}}>{percentage.toFixed(0)}%</div>
+                  <div class="w3-container w3-blue w3-round-xlarge" style={{width:`${perce(project.pledge).toFixed(0)}%`}}>{perce(project.pledge).toFixed(0)}%</div>
                 </div>
                  
                   <ul class="property-info list-unstyled d-flex">
