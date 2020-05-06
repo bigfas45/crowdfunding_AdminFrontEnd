@@ -138,41 +138,26 @@ const Home = () => {
               </div>
             </div>
             <div className="row justify-content-center">
-              <div className="col-md-4 mb-4 mb-md-0">
-                <div className="bg-light h-100 p-5">
-                  <h4>Chat to us online</h4>
-                  <p>
-                    Chat to us online if you have a question about using our
-                    Mortgage calculator.
-                  </p>
-                  <Link className="btn btn-primary btn-sm mt-3" to="#">
-                    {" "}
-                    start web chat
-                  </Link>
-                </div>
-              </div>
-              <div className="col-md-4 mb-4 mb-md-0">
-                <div className="bg-primary h-100 p-5">
-                  <h4 className="text-white">Call us</h4>
-                  <p className="text-white">
-                    Our mortgage loan officers will work with you to meet your
-                    lending needs.
-                  </p>
-                  <h2 className="text-white mt-4 mb-0">(123) 345-6789</h2>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="bg-dark h-100 p-5">
-                  <h4 className="text-white">
-                    Contact us now to lock in your rate.
-                  </h4>
-                  <span className="text-white mt-1 mb-0 d-block">
-                    Find a mortgage loan officer call
-                  </span>
-                  <h2 className="text-white mt-4 mb-0">(456) 478-2589</h2>
-                </div>
-              </div>
+            
+             
+            <div class="row justify-content-center">
+      <div class="col-md-6 mb-6 mb-md-0">
+        <div class="bg-light h-100 p-5">
+          <h4>Chat to us online</h4>
+          <p>Chat to us online if you have a question.</p>
+          <a class="btn btn-primary btn-sm mt-3" href="https://tawk.to/chat/5eb20a7ba1bad90e54a209e4/default" target="_blank"> start web chat</a>
+        </div>
+      </div>
+      <div class="col-md-6 mb-6 mb-md-0">
+        <div class="bg-primary h-100 p-5">
+          <h4 class="text-white">Call us</h4>
+          <p class="text-white">We are here to answer all your questions</p>
+          <h2 class="text-white mt-4 mb-0">+234-902-455-9686</h2>
+        </div>
+      </div>
+      
             </div>
+          </div>
           </div>
         </section>
       </Fragment>

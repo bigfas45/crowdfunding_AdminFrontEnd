@@ -7,7 +7,9 @@ const HomeSectionTwo = () => {
     <div class="row">
       <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
         <div class="bg-light p-4 py-5 text-center h-100">
-          <i class="fas fa-dollar-sign font-xlll text-primary mb-4"></i>
+          {/* <i class="fas fa-naira-sign font-xlll text-primary mb-4"></i> */}
+        
+<span className="font-xlll text-primary mb-4">&#8358;</span>
           <h5 class="mb-3">31,2 million invested capital</h5>
          
         </div>

@@ -15,9 +15,9 @@ const Footer = () => {
           <h5 class="text-primary mb-4">About NASD</h5>
           <p class="text-white mb-4"></p>
           <ul class="list-unstyled mb-0">
-            <li> <b> <i class="fas fa-map-marker-alt"></i></b><span>Lagos, Nigeria</span> </li>
-            <li> <b><i class="fas fa-microphone-alt"></i></b><span>(123) 345-6789</span> </li>
-            <li> <b><i class="fas fa-headset"></i></b><span>support@nasdng.com</span> </li>
+          <li> <b> <i class="fas fa-map-marker-alt"></i></b><span>9th Floor, UBA House, 57 Marina, Lagos State, Nigeria</span> </li>
+            <li> <b><i class="fas fa-microphone-alt"></i></b><span>+234-902-455-9686</span> </li>
+            <li> <b><i class="fas fa-headset"></i></b><span>info@nasdng.com</span> </li>
           </ul>
         </div>
       </div>

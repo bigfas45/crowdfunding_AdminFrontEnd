@@ -20,20 +20,12 @@ const Menu = ({ history }) => {
               <div className="col-12">
                 <div className="d-block d-md-flex align-items-center text-center">
                   <div className="mr-3 d-inline-block">
-                    <Link to="tel:1-800-555-1234">
+                    <Link to="+234-902-455-9686">
                       <i className="fa fa-phone mr-2 fa fa-flip-horizontal"></i>
-                      1-800-555-1234{" "}
+                      +234-902-455-9686{" "}
                     </Link>
                   </div>
-                  <div className="mr-auto d-inline-block">
-                    <span className="mr-2 text-white">Get App:</span>
-                    <Link className="pr-1" to="#">
-                      <i className="fab fa-android"></i>
-                    </Link>
-                    <Link to="#">
-                      <i className="fab fa-apple"></i>
-                    </Link>
-                  </div>
+                
 
                   <div className="social d-inline-block">
                     <ul className="list-unstyled">
