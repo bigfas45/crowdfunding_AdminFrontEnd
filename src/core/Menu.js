@@ -25,7 +25,15 @@ const Menu = ({ history }) => {
                       +234-902-455-9686{" "}
                     </Link>
                   </div>
-                
+                  <div className="mr-auto d-inline-block">
+                    {/* <span className="mr-2 text-white">Get App:</span>
+                    <Link className="pr-1" to="#">
+                      <i className="fab fa-android"></i>
+                    </Link>
+                    <Link to="#">
+                      <i className="fab fa-apple"></i>
+                    </Link> */}
+                  </div>
 
                   <div className="social d-inline-block">
                     <ul className="list-unstyled">
