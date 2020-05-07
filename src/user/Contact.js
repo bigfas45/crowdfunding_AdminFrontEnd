@@ -58,7 +58,7 @@ const Contact = () => {
             </div>
             <div className="ml-3">
               <h6>Phone Number</h6>
-              <p>(123) 345-6789</p>
+              <p>234-902-455-9686</p>
             </div>
           </div>
          
@@ -110,41 +110,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
-   <div className="row mt-1 mt-md-2">
-      <div className="col-12">
-        <h4 className="mb-4 my-4 my-sm-5">Additional contact Info</h4>
-      </div>
-      <div className="col-md-4">
-        <div className="d-flex">
-          <i className="flaticon-time-call font-xlll text-primary"></i>
-          <div className="ml-4">
-            <h5>Estate agency offices</h5>
-            <p>Our Estate Agency offices can help with you buying or selling a home.</p>
-            <Link to="#">Click to contact an estate agency branch</Link>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-4 mt-4 mt-md-0">
-        <div className="d-flex">
-          <i className="flaticon-email-1 font-xlll text-primary"></i>
-          <div className="ml-4">
-            <h5>Lettings offices</h5>
-            <p>Our Lettings offices can assist with you letting your home, protection and moving home.</p>
-            <Link to="#">Click to contact a lettings branch</Link>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-4 mt-4 mt-md-0">
-        <div className="d-flex">
-          <i className="flaticon-group font-xlll text-primary"></i>
-          <div className="ml-4">
-            <h5>Chat to us online</h5>
-            <p className="mb-0">Chat to us online if you have a question about using our Mortgage calculator.</p>
-            <Link className="btn btn-primary btn-sm mt-3" to="#"> Start web chat</Link>
-          </div>
-        </div>
-      </div>
-    </div> 
+
   </div>
 </section>
             </Fragment>
