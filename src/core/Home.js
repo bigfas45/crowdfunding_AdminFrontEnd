@@ -143,7 +143,7 @@ const Home = () => {
             <div class="row justify-content-center">
       <div class="col-md-6 mb-6 mb-md-0">
         <div class="bg-light h-100 p-5">
-          <h4>Chat to us online</h4>
+          <h4>Chat with us</h4>
           <p>Chat to us online if you have a question.</p>
           <a class="btn btn-primary btn-sm mt-3" href="https://tawk.to/chat/5eb20a7ba1bad90e54a209e4/default" target="_blank"> start web chat</a>
         </div>
