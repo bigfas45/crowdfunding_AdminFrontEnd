@@ -27,7 +27,7 @@ let percentage=0
     data.map((p,i) => {
       amount = p.amount
       total += amount
-      console.log(amount)
+     
     })
   }
 

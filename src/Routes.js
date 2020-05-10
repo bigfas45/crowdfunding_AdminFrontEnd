@@ -20,6 +20,8 @@ import PrivateNotice from "./user/PrivateNotice";
 import Security from "./user/Security";
 import DataProtection from "./user/DataProtection";
 import Termofuse from "./user/Termofuse";
+import BlogDetails from "./core/BlogDetails";
+import Blogs from "./core/Blogs";
 
 
 
@@ -45,7 +47,8 @@ const Routes = () => {
         <Route path="/security" exact component={Security} />
         <Route path="/data/protection" exact component={DataProtection} />
         <Route path="/term_of_use" exact component={Termofuse} />
-
+        <Route path="/blog/:blogId" exact component={BlogDetails} />
+        <Route path="/blogs" exact component={Blogs} />
       </Switch>
     </BrowserRouter>
   );

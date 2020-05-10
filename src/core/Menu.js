@@ -20,7 +20,7 @@ const Menu = ({ history }) => {
               <div className="col-12">
                 <div className="d-block d-md-flex align-items-center text-center">
                   <div className="mr-3 d-inline-block">
-                    <Link to="+234-902-455-9686">
+                    <Link to="/">
                       <i className="fa fa-phone mr-2 fa fa-flip-horizontal"></i>
                       +234-902-455-9686{" "}
                     </Link>
@@ -172,6 +172,16 @@ const Menu = ({ history }) => {
                     to="/project"
                   >
                     Projects
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    style={isActive(history, "/blogs")}
+                    to="/blogs"
+                  >
+                    Blogs
                   </Link>
                 </li>
                 <li className="nav-item">

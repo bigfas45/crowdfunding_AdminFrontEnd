@@ -33,6 +33,93 @@ export const getProductPayment = (paymentId) => {
     };
 
 
+    export const getBlogFrontEnd = () => {
+   
+        return  fetch(`${API}/blog/listblog?order=desc&limit=3`, {
+                method: "GET",
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        };
+
+        export const getBlogs = () => {
+   
+            return  fetch(`${API}/blog/listblog?order=desc`, {
+                    method: "GET",
+                })
+                    .then(response => {
+                        return response.json();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            };
+
+
+      
+        
+
+        export const getSingleBlog = (blogId) => {
+   
+            return  fetch(`${API}/blog/read/${blogId}`, {
+                    method: "GET",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then(response => {
+                        return response.json();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            };
+
+            
+        export const updateBlogLikes = (blogId) => {
+            return  fetch(`${API}/blog/likes/now/${blogId}`, {
+                    method: "PUT",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      
+                    },
+                })
+                    .then(response => {
+                        return response.json();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            };
+
+
+            export const getBlogLikes = (blogId) => {
+   
+                return  fetch(`${API}/blog/related/${blogId}`, {
+                        method: "GET",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                    })
+                        .then(response => {
+                            return response.json();
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+                };
+    
+
+
+
+
 
 
 

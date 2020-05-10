@@ -114,7 +114,7 @@ const Project = () => {
                   <li className="breadcrumb-item active">
                     {" "}
                     <i className="fas fa-chevron-right"></i>{" "}
-                    <span>No result found </span>
+                    <span>Project </span>
                   </li>
                 </ol>
               </div>
