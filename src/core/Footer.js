@@ -1,8 +1,72 @@
-import React, { Fragment} from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
+import {contactForm} from './apiCore';
+import swal from "sweetalert";
 
 
 const Footer = () => {
+
+  const [values, setValues] = useState({
+    email: "",
+    error: "",
+    pop: false,
+    success: ""
+  });
+  const { email, error, success, pop } = values;
+  const handleChnage = name => event => {
+    setValues({ ...values, error: false, [name]: event.target.value });
+  };
+
+  const clickSubmit = event => {
+    event.preventDefault();
+    setValues({...values, error:false});
+    contactForm({  email }).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, success: false , pop: false});
+      } else {
+        setValues({
+          ...values,
+          email: "",
+          error:false,
+          success: true
+        });
+      }
+    });
+  };
+
+
+
+
+  const dashboarddashboard = (title, text) => {
+    swal({
+      title: ` ${title}`,
+      text: `${text}`,
+      icon: "error"
+    });
+  };
+
+  const dashboarddashboard2 = (title, text) => {
+    swal({
+      title: ` ${title}`,
+      text: `${text}`,
+      icon: "success"
+    });
+  };
+
+
+
+
+  const showLoading = () =>{
+   
+  if (success) {
+    return dashboarddashboard2("Contact Form Added Succesfully", `Your form has been sent to admin, We will get back to you shortly. `)
+
+  }if (error){
+    return dashboarddashboard("An Error Occured", error) 
+  }
+  
+  }
+ 
 
     const footer = () => {
         return (
@@ -25,15 +89,19 @@ const Footer = () => {
         <div class="footer-link">
           <h5 class="text-primary mb-4">Useful links</h5>
           <ul class="list-unstyled mb-0">
-            <li> <a href="#">Fees </a> </li>
             <li> <a href="#">FAQs </a> </li>
-            <li> <a href="#">Reports </a> </li>
             <li> <a href="#">Complaint </a> </li>
+            <li> <a href="#">Fees </a> </li>
+            <li> <a href="#">Security </a> </li>
+            <li> <Link to="#">&nbsp; </Link> </li>
           </ul>
+
+          
           <ul class="list-unstyled mb-0">
             <li> <Link to="/risk/warning">Risk Warnings </Link> </li>
             <li> <Link to="/private/notice">Privacy Notice</Link> </li>
             <li> <Link to="/security">Security</Link> </li>
+            <li> <Link to="#">&nbsp; </Link> </li>
             <li> <Link to="#">&nbsp; </Link> </li>
             
           </ul>
@@ -49,9 +117,9 @@ const Footer = () => {
           <p class="text-white">Sign up to our newsletter to get the latest news and offers.</p>
           <form>
             <div class="form-group">
-              <input type="email" class="form-control" placeholder="Enter email" />
+              <input type="email"    onChange={handleChnage("email")}    value={email} class="form-control" placeholder="Enter email" />
             </div>
-            <button type="submit" class="btn btn-primary btn-sm">Get notified</button>
+            <button    onClick={clickSubmit} type="submit" class="btn btn-primary btn-sm">Get notified</button>
           </form>
         </div>
       </div>
@@ -82,6 +150,7 @@ const Footer = () => {
 
     return (
         <Fragment>
+          {showLoading()}
           {footer()}
     
         

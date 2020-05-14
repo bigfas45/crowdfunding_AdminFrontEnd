@@ -18,7 +18,7 @@ const content = () => {
         </div> 
     <div class="row justify-content-center align-items-center">
       <div class="col-md-6 text-center position-relative overflow-hidden">
-         <img class="img-fluid" src="https://nasdng.com/wp-content/uploads/2020/05/register.jpg" height="1000" alt=""/>
+         <img class="img-fluid" src="https://nasdng.com/wp-content/uploads/2020/05/newreg.jpg" height="1000" alt=""/>
       </div>
       <div class="col-md-6 mt-5 mt-md-0">
           <h1 class="mb-4">Register</h1>

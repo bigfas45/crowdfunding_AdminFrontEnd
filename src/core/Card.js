@@ -44,6 +44,12 @@ let percentage=0
    
   }, []);
 
+  const projectType = (type) => {
+    if(type === 'Equity'){
+      return 'Shares'
+    }
+  }
+
 
  
     return (
@@ -67,7 +73,7 @@ let percentage=0
                 <div class="property-details-inner">
                   <h5 class="property-title"><a href="project2.php">{project.title} </a></h5>
                  
-                  <span class="property-agent-date"> <br/><i style="color: green;"  class="fas fa-chart-bar" style={{margin: "4px 0px 0px 0px"}}></i> &nbsp;{project.returns}% returns in {project.duration} months
+                  <span class="property-agent-date"> <br/><i style="color: green;"  class="fas fa-chart-bar" style={{margin: "4px 0px 0px 0px"}}></i> &nbsp;{project.projectType === 'Equity' ? 'Shares' : project.returns }% returns in {project.duration} months
                 </span>
                   <br/>
                   <br/>

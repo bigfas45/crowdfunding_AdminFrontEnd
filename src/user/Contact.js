@@ -1,9 +1,81 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../core/Footer";
+import {contactForm} from '../core/apiCore';
+import swal from "sweetalert";
+
 
 
 const Contact = () => {
+
+  const [values, setValues] = useState({
+    name: "",
+    telephone:"",
+    email: "",
+    message: "",
+    subject: "",
+    error: "",
+    success: ""
+  });
+  const { name, email,telephone, message,subject, error, success } = values;
+  const handleChnage = name => event => {
+    setValues({ ...values, error: false, [name]: event.target.value });
+  };
+
+  const clickSubmit = event => {
+    event.preventDefault();
+    setValues({...values, error:false});
+    contactForm({  name, email, telephone, message,subject }).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, success: false , pop: false});
+      } else {
+        setValues({
+          ...values,
+          name: "",
+          telephone:"",
+          email: "",
+          message: "",
+          subject: "",
+          error:false,
+          success: true
+        });
+      }
+    });
+  };
+
+
+
+
+  const dashboarddashboard = (title, text) => {
+    swal({
+      title: ` ${title}`,
+      text: `${text}`,
+      icon: "error"
+    });
+  };
+
+  const dashboarddashboard2 = (title, text) => {
+    swal({
+      title: ` ${title}`,
+      text: `${text}`,
+      icon: "success"
+    });
+  };
+
+
+
+
+  const showLoading = () =>{
+   
+  if (success) {
+    return dashboarddashboard2("Email Added Succesfully", `Your ${email} has been added successfully, you have subscribed to the crowd funding newsletter to get the latest news and offers. `)
+
+  }if (error){
+    return dashboarddashboard("An Error Occured", error) 
+  }
+  
+  }
+ 
 
     const content = () => {
         return(
@@ -82,19 +154,19 @@ const Contact = () => {
           <form>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <input type="text" className="form-control" id="name" placeholder="Your name" />
+                <input onChange={handleChnage("name")} value={name} type="text" className="form-control" id="name" placeholder="Your name" />
               </div>
               <div className="form-group col-md-6">
-                <input type="email" className="form-control" id="inputEmail4" placeholder="Your email" />
+                <input onChange={handleChnage("email")}  value={email} type="email" className="form-control" id="inputEmail4" placeholder="Your email" />
               </div>
               <div className="form-group col-md-6">
-                <input type="text" className="form-control" id="phone" placeholder="Your phone" />
+                <input onChange={handleChnage("telephone")}  value={telephone} type="text" className="form-control" id="phone" placeholder="Your phone" />
               </div>
               <div className="form-group col-md-6">
-                <input type="text" className="form-control" id="subject" placeholder="Subject" />
+                <input onChange={handleChnage("subject")}    value={subject} type="text" className="form-control" id="subject" placeholder="Subject" />
               </div>
               <div className="form-group col-md-12">
-                <textarea className="form-control" rows="4" placeholder="Your message"></textarea>
+                <textarea onChange={handleChnage("message")}    value={message} className="form-control" rows="4" placeholder="Your message"></textarea>
               </div>
               <div className="form-group col-md-12">
                 <div className="custom-control custom-checkbox">
@@ -103,7 +175,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="col-md-12">
-                <Link className="btn btn-primary" to="#">Send message</Link>
+                <button onClick={clickSubmit} type="submit" className="btn btn-primary" to="#">Send message</button>
               </div>
             </div>
           </form>
@@ -120,6 +192,7 @@ const Contact = () => {
 
     return(
         <Fragment>
+             {showLoading()}
 {content()}
 <Footer />
         </Fragment>

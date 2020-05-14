@@ -148,8 +148,7 @@ const Home = () => {
                                 <div className="section-title text-center">
                                     <h2>Need any help?</h2>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Repellat, perferendis!
+                                    NASD FUNDHUB.... the contemporary hub for Crowdfunding!!!
                                     </p>
                                 </div>
                             </div>

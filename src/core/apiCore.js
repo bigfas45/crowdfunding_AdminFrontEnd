@@ -118,7 +118,61 @@ export const getProductPayment = (paymentId) => {
     
 
 
+                export const contactForm = contact => {
+              
+                    return fetch(`${API}/contact`, {
+                      method: "POST",
+                      headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                      },
+                      body: JSON.stringify(contact)
+                    })
+                      .then(response => {
+                        return response.json();
+                      })
+                      .catch(err => {
+                        console.log(err);
+                      });
+                  };
 
+
+
+                  export const getPayment = () => {
+   
+                    return  fetch(`${API}/payments`, {
+                            method: "GET",
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                            },
+                        })
+                            .then(response => {
+                                return response.json();
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            });
+                    };
+
+
+                    export const getUserCount = () => {
+   
+                        return  fetch(`${API}/users/frontend/list`, {
+                                method: "GET",
+                                headers: {
+                                    Accept: "application/json",
+                                    "Content-Type": "application/json",
+                                },
+                            })
+                                .then(response => {
+                                    return response.json();
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                });
+                        };
+        
 
 
 

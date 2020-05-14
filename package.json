@@ -19,7 +19,8 @@
     "react-scripts": "3.4.1",
     "react-text-limit-component": "^1.0.8",
     "react-word-limit": "^1.0.1",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "sweetalert": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

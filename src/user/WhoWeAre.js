@@ -10,36 +10,29 @@ const WhoWeAre = () => {
     const content = () => {
         return(
             <Fragment>
-                <div class="bg-light">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
-         
-          <li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span>About Us </span></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</div>
-
-<section class="space-ptb bg-holder">
+          <section class="space-ptb bg-holder">
   <div class="container">
      <div class="section-title text-center">
           <h2>WHO WE ARE </h2>
         </div> 
     <div class="row justify-content-center align-items-center">
      
-      <div class="col-md-6 mt-5 mt-md-0">
+      <div class="col-md-12 mt-5 mt-md-0">
           <h1 class="mb-4">Our Mission</h1>
-          <p class="lead">We connect entrepreneurs and investors and create the basis for promising business ideas together.</p>
-          <p class="lead">We believe that the future lies in the hands of young and innovative entrepreneurs. Therefore we have made it our goal to support these entrepreneurs, to lay the foundations together for the realisation of their dreams.</p>
+         <p class="lead"><span style={{fontWeight: "bolder"}}> NASD FUNDY</span> is focused on connecting entrepreneurs and investors and creating the basis for promising business ideas together.</p>
+
+
+         <p class="lead"> We believe that economic growth and expansion lies in the hands of young and innovative MSMEs. Historically access to finance has been identified as a major impediment to the growth and development of these enterprises. Therefore, we have made it our goal to support these entrepreneurs in laying the foundations required for the realisation of their dreams.</p>
+
+
+         <p class="lead"> Through NASD FUNDY, we are bridging the financing gap experienced by MSMEs and mitigating the challenges encountered when applying to access capital from traditional providers of capital. In addition, NASD FUNDY provides a unique avenue for individuals to invest in enterprises and ideas in which they believe show a promising potential for growth. </p>
+
+          
          
       </div>
-       <div class="col-md-6 text-center position-relative overflow-hidden">
-         <img class="img-fluid" src="https://nasdng.com/wp-content/uploads/2020/04/buss.jpg" height="1000" alt="" />
-      </div>
+       {/* <!-- <div class="col-md-6 text-center position-relative overflow-hidden">
+         <img class="img-fluid" src="images/buss.jpg" height="1000" alt="">
+      </div> --></div> */}
     </div>
   </div>
 
@@ -50,10 +43,15 @@ const WhoWeAre = () => {
      
       <div class="col-md-12 mt-5 mt-md-0">
           <h1 class="mb-4">Our principles</h1>
-          <p class="lead">NASD is more than a crowdinvesting platform. NASD is the connecting link between entrepreneurs and investors, helping them realise something great together.</p>
-          <p class="lead">At NASD people take priority.We place particular emphasis and value on personal contact and regional proximity – whether it concerns the entrepreneurs, our investors, our partners or of course our international team.</p>
-          <p class="lead">At NASD people take priority.We place particular emphasis and value on personal contact and regional proximity – whether it concerns the entrepreneurs, our investors, our partners or of course our international team.</p>
-          <p class="lead">At NASD people take priority.We place particular emphasis and value on personal contact and regional proximity – whether it concerns the entrepreneurs, our investors, our partners or of course our international team.</p>
+          <p class="lead"><strong>NASD FUNDY</strong> is more than a crowd funding platform. NASD FUNDY is the connecting link between entrepreneurs and investors, helping them realise their capital raise objectives and investment goals respectively. We are driven by our guiding philosophy:</p>
+          <h3>TRANSPARENCY </h3>
+          <p class="lead">We will provide information that is relevant, necessary and timely. </p>
+
+          <h3>PERFORMANCE</h3>
+          <p class="lead">We will ensure that all requirements are executed to exceed stakeholders’ expectations </p>
+
+          <h3>INTEGRITY </h3>
+          <p class="lead">We will honour all commitments and never compromise our ethics.</p>
           
       </div>
 
@@ -61,7 +59,7 @@ const WhoWeAre = () => {
   </div>
 
 </section>
-<br /><br /><br /><br />
+<br/><br/><br/>
             </Fragment>
         )
     }
