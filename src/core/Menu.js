@@ -73,7 +73,7 @@ const Menu = ({ history }) => {
                   {!isAuthenticated() && (
                   <Fragment>
                       <div className="login d-inline-block">
-                    <a   href="http://account.nasdfundy.com/">
+                    <a   href="https://account.ventureramp.com.ng/">
                       sign in<i className="fa fa-user pl-2"></i>
                     </a>
                   </div>
@@ -199,7 +199,7 @@ const Menu = ({ history }) => {
             {isAuthenticated() && (
               <Fragment>
               <div className="add-listing d-none d-sm-block">
-              <a  className="btn btn-primary btn-md" href="http://account.nasdfundy.com/">
+              <a  className="btn btn-primary btn-md" href="https://account.ventureramp.com.ng/">
                 Dashboard
               </a>
             </div>
@@ -210,7 +210,7 @@ const Menu = ({ history }) => {
         {!isAuthenticated() && (
               <Fragment>
               <div className="add-listing d-none d-sm-block">
-              <a  className="btn btn-primary btn-md" href="http://account.nasdfundy.com/">
+              <a  className="btn btn-primary btn-md" href="https://account.ventureramp.com.ng/">
                 Submit Project
               </a>
             </div>
