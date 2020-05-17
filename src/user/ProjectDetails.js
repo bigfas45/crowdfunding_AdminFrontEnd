@@ -193,7 +193,7 @@ useEffect(() => {
                       <p style={{fontSize: "15px", fontWeight: "bolder"}}>{moment(d.createdAt). fromNow()} </p></li>
                   </ul>
 
-                   <a class="btn btn-primary" href="#"><span>LOGIN TO INVEST</span></a>
+                   <a class="btn btn-primary" href="https://account.ventureramp.com.ng/"><span>LOGIN TO INVEST</span></a>
                    <br/>
                    <br/>
 
