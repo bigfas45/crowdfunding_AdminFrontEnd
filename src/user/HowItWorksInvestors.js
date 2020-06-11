@@ -22,7 +22,7 @@ const content = () => {
       </div>
       <div class="col-md-6 mt-5 mt-md-0">
           <h1 class="mb-4">Register</h1>
-          <p class="lead">Kindly register your interest as an investor in NASD FUNDY in 2 simple steps:</p>
+          <p class="lead">Kindly register your interest as an investor in NASD VentureRamp in 2 simple steps:</p>
           <ul class="pl-3">
             <li class="mb-2">Click here to complete the investor registration form</li>
             <li class="mb-2">Upload the required investor registration documents and bio-data here</li>

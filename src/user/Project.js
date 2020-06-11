@@ -6,6 +6,8 @@ import ShowImage from "../core/ShowImage";
 import CheckBox from "../core/Checkbox";
 import CardProject from "../core/CardProject";
 import Card from "../core/Card";
+import IMG from "../logo.jpg"
+
 
 const Project = () => {
   const [myFilters, setMyFilters] = useState({
@@ -310,7 +312,7 @@ const Project = () => {
                   <Link to="index.html">
                     <img
                       className="img-fluid footer-logo"
-                      src="images/nasdlogop.jpg"
+                      src={IMG}
                       alt=""
                     />{" "}
                   </Link>
