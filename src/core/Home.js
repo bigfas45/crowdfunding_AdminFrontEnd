@@ -148,7 +148,7 @@ const Home = () => {
                                 <div className="section-title text-center">
                                     <h2>Need any help?</h2>
                                     <p>
-                                    NASD FUNDHUB.... the contemporary hub for Crowdfunding!!!
+                                    NASD VentureRamp.... the contemporary hub for Crowdfunding!!!
                                     </p>
                                 </div>
                             </div>
