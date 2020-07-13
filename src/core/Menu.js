@@ -20,10 +20,10 @@ const Menu = ({ history }) => {
               <div className="col-12">
                 <div className="d-block d-md-flex align-items-center text-center">
                   <div className="mr-3 d-inline-block">
-                    <Link to="/">
+                   
                       <i className="fa fa-phone mr-2 fa fa-flip-horizontal"></i>
                       +234-902-455-9686{" "}
-                    </Link>
+                   
                   </div>
                   <div className="mr-auto d-inline-block">
                     {/* <span className="mr-2 text-white">Get App:</span>
@@ -117,7 +117,7 @@ const Menu = ({ history }) => {
             >
               <i className="fas fa-align-left"></i>
             </button>
-            <Link className="navbar-brand" to="#">
+            <Link className="navbar-brand" to="/">
               <img className="img-fluid" src={IMG} alt="logo" />
             </Link>
             <div className="navbar-collapse collapse justify-content-center">

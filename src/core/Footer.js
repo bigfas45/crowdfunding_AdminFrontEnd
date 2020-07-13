@@ -1,11 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {contactForm} from './apiCore';
 import swal from "sweetalert";
 
 
 const Footer = () => {
-
   const [values, setValues] = useState({
     email: "",
     error: "",
@@ -16,6 +15,9 @@ const Footer = () => {
   const handleChnage = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
+  useEffect(() => {
+    window.scrollTo(0, 0)
+});
 
   const clickSubmit = event => {
     event.preventDefault();
@@ -44,7 +46,6 @@ const Footer = () => {
       icon: "error"
     });
   };
-
   const dashboarddashboard2 = (title, text) => {
     swal({
       title: ` ${title}`,
@@ -57,14 +58,11 @@ const Footer = () => {
 
 
   const showLoading = () =>{
-   
   if (success) {
     return dashboarddashboard2("Contact Form Added Succesfully", `Your form has been sent to admin, We will get back to you shortly. `)
-
   }if (error){
     return dashboarddashboard("An Error Occured", error) 
   }
-  
   }
  
 
@@ -81,7 +79,7 @@ const Footer = () => {
           <ul class="list-unstyled mb-0">
           <li> <b> <i class="fas fa-map-marker-alt"></i></b><span>9th Floor, UBA House, 57 Marina, Lagos State, Nigeria</span> </li>
             <li> <b><i class="fas fa-microphone-alt"></i></b><span>+234-902-455-9686</span> </li>
-            <li> <b><i class="fas fa-headset"></i></b><span>info@nasdng.com</span> </li>
+            <li> <b><i class="fas fa-headset"></i></b><span>info@ventureramp.com.ng</span> </li>
           </ul>
         </div>
       </div>
@@ -90,7 +88,7 @@ const Footer = () => {
           <h5 class="text-primary mb-4">Useful links</h5>
           <ul class="list-unstyled mb-0">
             <li> <a href="#">FAQs </a> </li>
-            <li> <a href="#">Complaint </a> </li>
+            <li> <Link to="/complaintsfrom">Complaint </Link> </li>
             <li> <a href="#">Fees </a> </li>
             <li> <a href="#">Security </a> </li>
             <li> <Link to="#">&nbsp; </Link> </li>
@@ -98,14 +96,12 @@ const Footer = () => {
 
           
           <ul class="list-unstyled mb-0">
-            <li> <Link to="/risk/warning">Risk Warnings </Link> </li>
-            <li> <Link to="/private/notice">Privacy Notice</Link> </li>
+            <li> <Link to="/riskwarning">Risk Warnings </Link> </li>
+            <li> <Link to="/privatenotice">Privacy Notice</Link> </li>
             <li> <Link to="/security">Security</Link> </li>
             <li> <Link to="#">&nbsp; </Link> </li>
             <li> <Link to="#">&nbsp; </Link> </li>
-            
           </ul>
-          
         </div>
       </div>
 
@@ -129,13 +125,13 @@ const Footer = () => {
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-4 text-center text-md-right">
-          <p class="mb-0 text-white"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> NASD </a> All Rights Reserved </p>
+          <p class="mb-0 text-white"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> VentureRamp 2020 </a> All Rights Reserved </p>
         </div>
         <div class="col-md-4 text-center my-3 mt-md-0 mb-md-0">
           <a id="back-to-top" class="back-to-top" href="#"><i class="fas fa-angle-double-up"></i> </a>
         </div>
         <div class="col-md-4 text-center text-md-right">
-          <p class="mb-0 " style={{color: "white"}}><Link to="/data/protection"> Data protection Policy</Link> | <a href=""> Privacy Policy</a> | <Link to="/term_of_use">Terms of Use</Link>
+          <p class="mb-0 " style={{color: "white"}}><Link to="/dataprotection"> Data protection Policy</Link> | <Link to="/Privacypolicy"> Privacy Policy</Link> | <Link to="/term_of_use">Terms of Use</Link>
             </p>
         </div>
       </div>
@@ -152,11 +148,8 @@ const Footer = () => {
         <Fragment>
           {showLoading()}
           {footer()}
-    
-        
         </Fragment>
       );
-
 }
 
 

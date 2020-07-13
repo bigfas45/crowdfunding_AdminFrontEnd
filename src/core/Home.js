@@ -11,6 +11,8 @@ import moment from 'moment';
 import ShowImage from './ShowImage';
 import ShowLikes from './ShowLikes';
 import addNotification from 'react-push-notification';
+import swal from "sweetalert";
+
 
 const Home = () => {
 
@@ -43,18 +45,37 @@ const Home = () => {
 
     useEffect(() => {
         init();
+        window.scrollTo(0, 0)
     }, []);
 
 
-    const buttonClick = () => {
-      addNotification({
-          title: 'Warning',
-          subtitle: 'This is a subtitle',
-          message: 'This is a very long message',
-          theme: 'darkblue',
-          native: true // when using native, your OS will handle theming.
-      });
-  };
+    const dashboarddashboard = () => {
+        swal({
+          title: `RISK WARNING`,
+          text: `
+         
+            1. Crowd-sourced funding is risky. Issuers using this portal include new or rapidly growing enterprises. Investment in these types of enterprises is speculative and carries high risks. 
+            
+            2. You may lose your entire investment, and you should be in a position to bear this risk without undue hardship. 
+       
+            3. Even if the company is successful, the value of your investment and any return on the investment could be reduced if the company issues more shares.
+           
+            4. Even if the company is successful, the value of your investment and any return on the investment could be reduced if the company issues more shares.
+            
+            5. Even though you have remedies for misleading statements in the offer document or misconduct by the company, you may have difficulty recovering your money
+            
+            6. Your investment is unlikely to be liquid. This means you are unlikely to be able to sell your shares quickly or at all if you need the money or decide that this investment is not right for you.
+           
+            7. Even though you have remedies for misleading statements in the offer document or misconduct by the company, you may have difficulty recovering your money.
+           
+            8. Ask questions, read all information given carefully, and seek independent financial advice before committing yourself to any investment. 
+
+         
+          `,
+          icon: "success"
+        });
+      };
+      
 
 
 
@@ -182,8 +203,9 @@ const Home = () => {
     };
 
     return (
+       
         <Fragment>
-      
+       {dashboarddashboard()}
             <Slider title="With NASD" description="You Are Investing In Companies With Personality"></Slider>
             <HomeSectionTwo></HomeSectionTwo>
             <ProjectHome></ProjectHome>

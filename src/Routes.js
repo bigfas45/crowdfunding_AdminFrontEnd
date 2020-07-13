@@ -17,6 +17,9 @@ import WhoWeAre from "./user/WhoWeAre";
 import Contact from "./user/Contact";
 import Risk from "./user/Risk";
 import PrivateNotice from "./user/PrivateNotice";
+import ComplaintsFrom from "./user/ComplaintsFrom";
+import PrivacyPolicy from "./user/PrivacyPolicy";
+
 import Security from "./user/Security";
 import DataProtection from "./user/DataProtection";
 import Termofuse from "./user/Termofuse";
@@ -42,13 +45,16 @@ const Routes = () => {
         <Route path="/HowItWorksInvestors" exact component={HowItWorksInvestors} />
         <Route path="/WhoWeAre" exact component={WhoWeAre} />
         <Route path="/contact" exact component={Contact} />
-        <Route path="/risk/warning" exact component={Risk} />
-        <Route path="/private/notice" exact component={PrivateNotice} />
+        <Route path="/riskwarning" exact component={Risk} />
+        <Route path="/privatenotice" exact component={PrivateNotice} />
         <Route path="/security" exact component={Security} />
-        <Route path="/data/protection" exact component={DataProtection} />
+        <Route path="/dataprotection" exact component={DataProtection} />
         <Route path="/term_of_use" exact component={Termofuse} />
         <Route path="/blog/:blogId" exact component={BlogDetails} />
         <Route path="/blogs" exact component={Blogs} />
+        <Route path="/complaintsfrom" exact component={ComplaintsFrom} />
+        <Route path="/Privacypolicy" exact component={PrivacyPolicy} />
+
       </Switch>
     </BrowserRouter>
   );
