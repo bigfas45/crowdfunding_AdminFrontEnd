@@ -559,7 +559,7 @@ const ProjectDetails = (props) => {
                           <div class="row">
                             <div class="col-12">
                               <div class="section-title">
-                                <h2>LOGIN TO VIEW DOCUMENTS</h2>
+                                <h2>LOGIN TO VIEW DOCUMENTS.</h2>
                               </div>
 
                               <a
