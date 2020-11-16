@@ -26,7 +26,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const ProjectDetails = (props) => {
-  const publicKey = process.env.PUBLICKEY;
+  const publicKey = 'pk_live_098c35141fc51e791417dbd444a3f1a152d968df';
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
