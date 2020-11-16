@@ -1,82 +1,70 @@
-import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
-import {signup, sendVerificationMail} from '../auth';
-
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { signup, sendVerificationMail } from '../auth';
 
 const Signup = () => {
   const [values, setValues] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    error: "",
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    error: '',
     pop: false,
-    success: false
+    success: false,
   });
   const { firstname, lastname, email, password, error, success, pop } = values;
 
-  const handleChnage = name => event => {
+  const handleChnage = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-
-  
-
-
-  
   const init = (email) => {
-    sendVerificationMail(email).then(data => {
+    sendVerificationMail(email).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error, pop: false });
       } else {
         setValues({
           ...values,
-          firstname: "",
-          lastname: "",
-          email: "",
-          password: "",
+          firstname: '',
+          lastname: '',
+          email: '',
+          password: '',
           success: true,
-          pop: true
+          pop: true,
         });
       }
     });
   };
 
-
-
-  const clickSubmit = event => {
+  const clickSubmit = (event) => {
     event.preventDefault();
-    setValues({...values, error:false});
-    signup({ firstname, lastname, email, password }).then(data => {
+    setValues({ ...values, error: false });
+    signup({ firstname, lastname, email, password }).then((data) => {
       if (data.error) {
-        setValues({ ...values, error: data.error, success: false , pop: false});
+        setValues({ ...values, error: data.error, success: false, pop: false });
       } else {
         setValues({
           ...values,
-          firstname: "",
-          lastname: "",
-          email: "",
-          password: "",
-          success: true
+          firstname: '',
+          lastname: '',
+          email: '',
+          password: '',
+          success: true,
         });
-        init(email)
-
+        init(email);
       }
     });
   };
 
   const showError = () => {
     return (
-     
-        <div
-          class="alert alert-danger"
-          role="alert"
-          style={{ display: error ? "" : "none" }}
-        >
-          {error}
-        </div>
-    
-   
+      <div
+        class="alert alert-danger"
+        role="alert"
+        style={{ display: error ? '' : 'none' }}
+      >
+        {error}
+      </div>
     );
   };
 
@@ -86,9 +74,9 @@ const Signup = () => {
         <div
           class="alert alert-info"
           role="alert"
-          style={{ display: success ? "" : "none" }}
+          style={{ display: success ? '' : 'none' }}
         >
-          New Account is created. Please <Link to="/signin">Signin</Link>  
+          New Account is created. Please <Link to="/signin">Signin</Link>
         </div>
       </Fragment>
     );
@@ -104,16 +92,17 @@ const Signup = () => {
                 <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item">
                     <Link to="index.html">
-                      {" "}
-                      <i class="fas fa-home"></i>{" "}
+                      {' '}
+                      <i class="fas fa-home"></i>{' '}
                     </Link>
                   </li>
                   <li class="breadcrumb-item">
-                    {" "}
-                    <i class="fas fa-chevron-right"></i> <Link to="#">Pages</Link>
+                    {' '}
+                    <i class="fas fa-chevron-right"></i>{' '}
+                    <Link to="#">Pages</Link>
                   </li>
                   <li class="breadcrumb-item active">
-                    {" "}
+                    {' '}
                     <i class="fas fa-chevron-right"></i> <span> Register </span>
                   </li>
                 </ol>
@@ -145,7 +134,7 @@ const Signup = () => {
                     </Link>
                   </li>
                 </ul>
-                <br/>
+                <br />
                 {showSuccess()}
                 {showError()}
                 <div class="tab-content" id="myTabContent">
@@ -159,7 +148,7 @@ const Signup = () => {
                       <div class="form-group col-sm-12">
                         <label>First Name:</label>
                         <input
-                          onChange={handleChnage("firstname")}
+                          onChange={handleChnage('firstname')}
                           type="text"
                           class="form-control"
                           placeholder=""
@@ -169,7 +158,7 @@ const Signup = () => {
                       <div class="form-group col-sm-12">
                         <label>Last Name:</label>
                         <input
-                          onChange={handleChnage("lastname")}
+                          onChange={handleChnage('lastname')}
                           type="text"
                           class="form-control"
                           placeholder=""
@@ -180,7 +169,7 @@ const Signup = () => {
                         <label>Email Address:</label>
                         <input
                           type="email"
-                          onChange={handleChnage("email")}
+                          onChange={handleChnage('email')}
                           class="form-control"
                           placeholder=""
                           value={email}
@@ -190,7 +179,7 @@ const Signup = () => {
                         <label>Password:</label>
                         <input
                           type="Password"
-                          onChange={handleChnage("password")}
+                          onChange={handleChnage('password')}
                           class="form-control"
                           placeholder=""
                           value={password}
@@ -210,7 +199,7 @@ const Signup = () => {
                         <ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
                           <li class="mr-1">
                             <Link to="#">
-                              Already Registered User? Click here to login{" "}
+                              Already Registered User? Click here to login{' '}
                             </Link>
                           </li>
                         </ul>
@@ -277,9 +266,7 @@ const Signup = () => {
     );
   };
 
-  return <Fragment>
-    {signupForm()}
-    </Fragment>;
+  return <Fragment>{signupForm()}</Fragment>;
 };
 
 export default Signup;

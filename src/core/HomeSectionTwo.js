@@ -79,7 +79,7 @@ useEffect(() => {
         <div class="bg-light p-4 py-5 text-center h-100">
           <i class="far fa-hand-holding-seedling"></i>
          <i class="fas fa-building font-xlll text-primary mb-4"></i>
-          <h5 class="mb-3">120 successfully funded companies</h5>
+          <h5 class="mb-3"> Successfully funded companies</h5>
          
         </div>
       </div>

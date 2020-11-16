@@ -45,7 +45,26 @@ export const getFilteredProduct = (skip, limit, filters = {}) => {
             .catch(err => {
                 console.log(err);
             });
-    };
+};
+    
+
+export const paystacck = ({projectId, amount, status}) => {
+  return fetch(`${API}/payment/create/`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+    },
+    body: {projectId,
+    amount,
+    status,}
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 
 
