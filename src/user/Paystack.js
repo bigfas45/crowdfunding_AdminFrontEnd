@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { PaystackButton } from 'react-paystack';
 
 const Contact = (props) => {
-  const publicKey = 'pk_test_27cb2b122303557f86d645cfd358a7cb365ae2aa';
+  const publicKey = 'pk_live_098c35141fc51e791417dbd444a3f1a152d968df';
   const [referenceId, setRefre] = useState('');
   useEffect(() => {
     setRefre(new Date().getTime());
