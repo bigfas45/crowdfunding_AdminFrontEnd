@@ -28,6 +28,8 @@ const Contact = (props) => {
   };
 
 
+  let userId = '5fb4256989c6efe6eb985c39';
+
 
   const clickSubmit = (event) => {
     event.preventDefault();
@@ -35,19 +37,19 @@ const Contact = (props) => {
   };
   let status = 1;
   const initPayments = (projectId) => {
-    paystackInti({ projectId, amount, status, referenceId }).then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setValues({
-          ...values,
-          redirectToReferrer: true,
-        });
-
-       
+    paystackInti({ projectId, amount, status, referenceId, userId }).then(
+      (data) => {
+        if (data.error) {
+          setValues({ ...values, error: data.error });
+        } else {
+          setValues({
+            ...values,
+            redirectToReferrer: true,
+          });
+        }
+        return <Redirect to="/" />;
       }
-       return <Redirect to="/" />; 
-    });
+    );
   };
 
 
