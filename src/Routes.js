@@ -19,6 +19,7 @@ import Risk from "./user/Risk";
 import PrivateNotice from "./user/PrivateNotice";
 import ComplaintsFrom from "./user/ComplaintsFrom";
 import PrivacyPolicy from "./user/PrivacyPolicy";
+import Paystack from './user/Paystack';
 
 import Security from "./user/Security";
 import DataProtection from "./user/DataProtection";
@@ -33,16 +34,33 @@ import Blogs from "./core/Blogs";
 const Routes = () => {
   return (
     <BrowserRouter>
-   <Menu />
+      <Menu />
       <Switch>
         <Route path="/" exact component={Home} />
-        <PrivateRoute path="/user/dashboard" exact component={DashboardLayout} />
+        <PrivateRoute
+          path="/user/dashboard"
+          exact
+          component={DashboardLayout}
+        />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
         <Route path="/signout" exact component={signout} />
         <Route path="/Project" exact component={Project} />
-        <Route path="/Project/details/:projectId" exact component={ProjectDetails} />
+        <Route
+          path="/Project/details/:projectId"
+          exact
+          component={ProjectDetails}
+        />
+        <Route
+          path="/Project/payment/:projectId"
+          exact
+          component={Paystack}
+        />
         <Route path="/howitworksissuers" exact component={HowItWorksIssuers} />
-        <Route path="/HowItWorksInvestors" exact component={HowItWorksInvestors} />
+        <Route
+          path="/HowItWorksInvestors"
+          exact
+          component={HowItWorksInvestors}
+        />
         <Route path="/WhoWeAre" exact component={WhoWeAre} />
         <Route path="/contact" exact component={Contact} />
         <Route path="/riskwarning" exact component={Risk} />
@@ -54,7 +72,6 @@ const Routes = () => {
         <Route path="/blogs" exact component={Blogs} />
         <Route path="/complaintsfrom" exact component={ComplaintsFrom} />
         <Route path="/Privacypolicy" exact component={PrivacyPolicy} />
-
       </Switch>
     </BrowserRouter>
   );
