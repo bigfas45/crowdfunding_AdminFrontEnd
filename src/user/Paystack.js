@@ -1,12 +1,13 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import Footer from '../core/Footer';
 import { contactForm, paystackInti } from '../core/apiCore';
 import swal from 'sweetalert';
 import { PaystackButton } from 'react-paystack';
 
 const Contact = (props) => {
-  const publicKey = 'pk_live_098c35141fc51e791417dbd444a3f1a152d968df';
+  let history = useHistory();
+  const publicKey = process.env.REACT_APP_API_URL_PAY;
   const [referenceId, setRefre] = useState('');
   useEffect(() => {
     setRefre(new Date().getTime());
@@ -24,16 +25,12 @@ const Contact = (props) => {
   const { name, email, telephone, amount, error, redirectToReferrer } = values;
   const handleChnage = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
-    
   };
-
 
   let userId = '5fb4256989c6efe6eb985c39';
 
-
   const clickSubmit = (event) => {
     event.preventDefault();
-   
   };
   let status = 1;
   const initPayments = (projectId) => {
@@ -47,13 +44,12 @@ const Contact = (props) => {
             redirectToReferrer: true,
           });
         }
-        return <Redirect to="/" />;
+        return history.push('/');
+        
+        // return <Redirect to="/" />;
       }
     );
   };
-
-
-
 
   const componentProps = {
     email: email ? email : 'anonymous@nasdng.com',
@@ -71,8 +67,8 @@ const Contact = (props) => {
         ...values,
         redirectToReferrer: true,
       });
-
-     return(<Redirect to="/" />) 
+ return history.push('/');
+      // return <Redirect to="/" />;
     },
 
     onClose: () => alert("Wait! Don't leave :("),
@@ -81,9 +77,10 @@ const Contact = (props) => {
   const redirectUser = () => {
     if (redirectToReferrer) {
       return (
-        <Redirect
-          to={`/Project/payment/${props.match.params.projectId}`}
-        ></Redirect>
+        // <Redirect
+        //   to={`/Project/payment/${props.match.params.projectId}`}
+        // ></Redirect>
+          history.push('/')
       );
     }
   };
@@ -208,6 +205,7 @@ const Contact = (props) => {
     <Fragment>
       {content()}
       {redirectUser()}
+     
       <Footer />
     </Fragment>
   );
