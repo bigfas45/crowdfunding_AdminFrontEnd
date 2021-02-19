@@ -54,6 +54,7 @@ const Contact = (props) => {
   const componentProps = {
     email: email ? email : 'anonymous@nasdng.com',
     amount: amount * 100,
+    subaccount: 'ACCT_emv2ub259hv6exq',
     referenceId,
     metadata: {
       name: name ? name : 'Anonymous',
